@@ -17,20 +17,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class App {
     public static void main(String[] args) throws Exception {
-
-        ArrayList<Integer> myList = new ArrayList<>();
-        myList.add(1);
-        myList.add(2);
-        myList.add(3);
-        myList.add(4);
-        myList.add(3);
-        myList.add(2);
-        myList.add(1);
-
-        int val = lonelyInteger(myList);
-        System.out.println(val);
+        System.out.println(fun());
 
     }
+    static int fun() { 
+        return 20; 
+    } 
+ 
 
     public static void plusMinus(List<Integer> arr) {
         /*MOVE THE FOLLOWING CODE TO THE MAIN TO RUN */
@@ -128,6 +121,18 @@ public class App {
     }
 
     public static int lonelyInteger(List<Integer> a){
+        // ArrayList<Integer> myList = new ArrayList<>();
+        // myList.add(1);
+        // myList.add(2);
+        // myList.add(3);
+        // myList.add(4);
+        // myList.add(3);
+        // myList.add(2);
+        // myList.add(1);
+
+        // int val = lonelyInteger(myList);
+        // System.out.println(val);
+        
         HashMap<Integer,Integer> hm = new HashMap<>();
         int lonelyIntegerVal = 0;
         a.forEach(number-> {
@@ -152,5 +157,118 @@ public class App {
         
         return lonelyIntegerVal;
 
+    }
+
+    public static int diagonalDifference(List<List<Integer>> arr) {
+        // List<List<Integer>> muList = Arrays.asList(
+        //     Arrays.asList(1,2,3,4),
+        //     Arrays.asList(5,6,7,8),   
+        //     Arrays.asList(9,10,11,12), 
+        //     Arrays.asList(13,14,15,16)
+        // );
+
+        // System.out.println(diagonalDifference(muList));
+
+        // Write your code here
+        int size = arr.size();
+        int lrSum = 0;  //left to right sum
+        int rlSum = 0;
+        for (int i=0; i < size; i++){
+            for (int j=0; j < size; j++)
+            {
+                if (i==j){
+                    lrSum += arr.get(i).get(j);
+                }
+                if (j == size-i-1)
+                {
+                    rlSum += arr.get(i).get(j);
+                }
+            }
+        }
+        int diagonalDifference = Math.abs(lrSum - rlSum);
+        return diagonalDifference;
+    }
+
+    public static List<Integer> countingSort(List<Integer> arr) {
+        // ArrayList<Integer> myList = new ArrayList<>();
+        // myList.add(1);
+        // myList.add(2);
+        // myList.add(3);
+        // myList.add(4);
+        // myList.add(3);
+        // myList.add(2);
+        // myList.add(1);
+
+
+        // ArrayList<Integer> sortedList = (ArrayList<Integer>) countingSort(myList);
+        
+        // System.out.println(sortedList);
+        
+        // Write your code here
+   
+        int mapVal[] = new int[100];
+
+        arr.forEach(number ->{
+            mapVal[number]++;
+        });
+        Integer[] integerArray = Arrays.stream(mapVal).boxed().toArray(Integer[]::new);
+        List<Integer> sortedListL =  Arrays.asList(integerArray);
+        ArrayList<Integer> sortedList = new ArrayList<>(sortedListL);
+
+        return sortedList;
+
+        // for(int i=0; i<= maxVal;i++ ){
+        //     int count = mapVal[i];
+        //     if (count > 0)
+        //     {
+        //         for(int j=0; j < count; j++)
+        //         {
+        //             sortedList.add(i);
+        //         }
+        //     }
+        // }
+
+        // return sortedList;
+
+    }
+
+    public static int flippingMatrix(List<List<Integer>> matrix) {
+        // List<List<Integer>> muList = Arrays.asList(
+        //     Arrays.asList(112,42,83,119),
+        //     Arrays.asList(56,125,56,49),   
+        //     Arrays.asList(15,78,101,43), 
+        //     Arrays.asList(62,98,114,108)
+        // );
+
+        // System.out.println(flippingMatrix(muList));
+        // Write your code here
+        int size = matrix.size();
+        int upperLeftMatrixSize = size/2;
+        int sum = 0;
+        
+        for (int i = 0; i < upperLeftMatrixSize; i++){
+            for (int j = 0; j < upperLeftMatrixSize; j++){
+                sum += getMax(i,j,matrix,size-1);
+            }
+        }
+        
+        return sum;
+    }
+
+    public static int getMax(int x, int y, List<List<Integer>> matrix, int size)
+    {
+        int maxVal = matrix.get(x).get(y);
+        
+        if (matrix.get(x).get(size-y) > maxVal ){
+            maxVal = matrix.get(x).get(size-y);
+        }
+        if (matrix.get(size-x).get(y) > maxVal){
+                maxVal = matrix.get(size-x).get(y);
+        }
+        if (matrix.get(size-x).get(size-y) > maxVal){
+                maxVal = matrix.get(size-x).get(size-y);
+        }
+        
+        return maxVal;
     }
 }
