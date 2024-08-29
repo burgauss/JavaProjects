@@ -5,10 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 
 /* Here are a collection of problems from the 1 week preparation Kit in Haker rank, we have a main
@@ -16,14 +13,66 @@ import java.time.format.DateTimeFormatter;
  * to each function the prerequisites to run the function, all this will be comment out inside the function
  */
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println(fun());
-
+    static boolean returnSomething(){
+        return false;
     }
-    static int fun() { 
-        return 20; 
-    } 
+
+
+    public static void main(String[] args) throws Exception {
+        String a = "GeeksforGeeks"; 
+		String b = new String(a); 
+		int value = 0; 
+		value = (a==b) ? 1:2; 
+		if(value == 1) 
+		{ 
+			System.out.println("GeeksforGeeks"); 
+		} 
+		else if(value == 2) 
+		{ 
+			System.out.println("Geeks for Geeks"); 
+		} 
+		else
+		{ 
+			System.out.println("GFG"); 
+		} 
+    }
  
+    public static String caesarCipher(String s, int k) {
+       // String str = caesarCipher("6DWV95HzxTCHP85dvv3NY2crzt1aO8j6g2zSDvFUiJj6XWDlZvNNr", 87);
+       // System.out.println(str);
+
+        // Write your code here
+        String s_code  = "";
+        int i_anscii = 0;
+        while (k > 26)
+        {
+            k = k -26;
+        }
+        for (char c : s.toCharArray())
+        {   
+            i_anscii = (int) c;
+            if ((i_anscii <= 90 && i_anscii >= 65))
+            {
+                //letter is upper case
+                i_anscii = i_anscii+k;
+                if (i_anscii > 90)
+                {
+                    i_anscii = i_anscii - 26;
+                }
+            } else if ((i_anscii >= 97) && (i_anscii <=122)) {
+                //lower case
+                i_anscii = i_anscii+k;
+                if (i_anscii > 122){
+                    i_anscii = i_anscii - 26;
+                }
+            }
+            
+            s_code = s_code + (char)i_anscii;   
+            
+        }
+
+        return s_code;
+    }
 
     public static void plusMinus(List<Integer> arr) {
         /*MOVE THE FOLLOWING CODE TO THE MAIN TO RUN */

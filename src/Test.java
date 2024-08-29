@@ -1,11 +1,6 @@
 public class Test {
     public static void main(String[] args) throws InterruptedException 
     { 
-        String str = new String("GeeksForGeeks"); 
-              
-        // making str eligible for gc 
-        str = null;  
-              
         // calling garbage collector 
         System.gc();  
               
